@@ -13,6 +13,13 @@ public class Pokemon {
     private double height;
     private double weight;
     private List<Stats> stats;
+    private List<Types> types;
+
+    @Setter
+    @Getter
+    public static class Stat {
+        private String name;
+    }
 
     @Setter
     @Getter
@@ -23,8 +30,14 @@ public class Pokemon {
 
     @Setter
     @Getter
-    public static class Stat {
+    public static class Type {
         private String name;
+    }
+
+    @Setter
+    @Getter
+    public static class Types {
+        private Type type;
     }
 
 

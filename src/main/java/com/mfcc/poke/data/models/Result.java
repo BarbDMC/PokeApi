@@ -12,6 +12,7 @@ public class Result {
     private double height;
     private double weight;
     private String description;
+    private String types;
     private int hp;
     private int attack;
     private int defense;
@@ -27,7 +28,8 @@ public class Result {
                     "\nName: " + name +
                     "\nHeight: " + height +
                     "\nWeight: " + weight +
-                    "\nDescription: " + description + "\n" +
+                    "\nDescription: " + description +
+                    "\nTypes: " + types + "\n" +
                     "\nBase Points:" +
                     "\n- hp -> " + hp +
                     "\n- attack -> " + attack +

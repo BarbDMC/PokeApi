@@ -29,13 +29,20 @@ public class GenerateData {
             resultBuilder.weight(pokemon.getWeight());
 
             PokemonFlavorTextEntries pokemonFlavorTextEntries = pokemonClientApi.getPokemonFlavorText();
-            List<String> descriptionLines = pokemonFlavorTextEntries.getFlavor_text_entries().stream()
+            List<String> descriptionList = pokemonFlavorTextEntries.getFlavor_text_entries().stream()
                     .filter(flavorTextEntries -> "es".equals(flavorTextEntries.getLanguage().getName()) && "x".equals(flavorTextEntries.getVersion().getName()))
                     .map(PokemonFlavorTextEntries.FlavorTextEntries::getFlavor_text)
                     .collect(Collectors.toList());
 
-            String description = String.join(" ", descriptionLines);
+            String description = String.join(" ", descriptionList);
             resultBuilder.description(description);
+
+            List<String> typesList = pokemon.getTypes().stream()
+                    .map(types -> types.getType().getName())
+                    .collect(Collectors.toList());
+
+            String types = String.join(", ", typesList);
+            resultBuilder.types(types);
 
             List<Integer> hpList = pokemon.getStats().stream()
                     .filter(stats -> "hp".equals(stats.getStat().getName()))
