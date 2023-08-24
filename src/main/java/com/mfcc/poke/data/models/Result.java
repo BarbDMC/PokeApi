@@ -17,7 +17,6 @@ public class Result {
                     "\nName: " + name +
                     "\nHeight: " + height +
                     "\nWeight: " + weight;
-             }
         }
     }
 }
