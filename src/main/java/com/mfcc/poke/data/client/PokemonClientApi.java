@@ -2,6 +2,7 @@ package com.mfcc.poke.data.client;
 
 import com.mfcc.poke.data.models.Pokemon;
 import com.mfcc.poke.data.models.PokemonFlavorTextEntries;
+import com.mfcc.poke.data.models.PokemonWeaknesses;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,4 +16,7 @@ public interface PokemonClientApi {
 
     @GetMapping("/pokemon-species/257")
     PokemonFlavorTextEntries getPokemonFlavorText();
+
+    @GetMapping("/type/2")
+    PokemonWeaknesses getPokemonWeaknesses();
 }

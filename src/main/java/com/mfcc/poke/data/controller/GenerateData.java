@@ -3,8 +3,10 @@ package com.mfcc.poke.data.controller;
 import com.mfcc.poke.data.client.PokemonClientApi;
 import com.mfcc.poke.data.models.Pokemon;
 import com.mfcc.poke.data.models.PokemonFlavorTextEntries;
+import com.mfcc.poke.data.models.PokemonWeaknesses;
 import com.mfcc.poke.data.models.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,6 +45,25 @@ public class GenerateData {
 
             String types = String.join(", ", typesList);
             resultBuilder.types(types);
+
+            PokemonWeaknesses pokemonWeaknesses = pokemonClientApi.getPokemonWeaknesses();
+
+            List <String> doubleDamageFrom = new ArrayList<>();
+            pokemonWeaknesses.getDamage_relations().getDouble_damage_from().forEach(doubleDamage -> {
+                   doubleDamageFrom.add(doubleDamage.getName());
+            });
+
+            List <String> halfDamageFrom = new ArrayList<>();
+            pokemonWeaknesses.getDamage_relations().getHalf_damage_from().forEach(halfDamage -> {
+                    halfDamageFrom.add(halfDamage.getName());
+            });
+
+            List<String> combinedWeaknesses = new ArrayList<>(doubleDamageFrom);
+            combinedWeaknesses.addAll(halfDamageFrom);
+
+            String weaknesses = String.join(", ", combinedWeaknesses);
+            resultBuilder.weaknesses(weaknesses);
+
 
             List<Integer> hpList = pokemon.getStats().stream()
                     .filter(stats -> "hp".equals(stats.getStat().getName()))
